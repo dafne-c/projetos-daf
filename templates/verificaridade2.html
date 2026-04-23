@@ -6,10 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-    {% if idade >= 18 %}
-    <h2> Você é maior de idade! Você tem {{ idade }} anos </h2>
+    {% if idade is not none %}
+        {% if idade >= 18 %}
+            <h2>Você é maior de idade! Você tem {{ idade }} anos</h2>
+        {% else %}
+            <h2>Você é menor de idade! Você tem {{ idade }} anos</h2>
+        {% endif %}
     {% else %}
-    <h1> Você é menor de idade! Você tem {{ idade }} anos </h1>
+        <h2>Idade não informada</h2>
     {% endif %}
 </body>
 </html>

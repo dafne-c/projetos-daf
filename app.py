@@ -42,16 +42,27 @@ def recebedados():
     email = request.args.get('email')
     return render_template('recebedados.html', nome=nome, sobrenome=sobrenome, email=email)
 
+@app.route('/verificaridade/', defaults={'idade': None})
 @app.route('/verificaridade/<int:idade>')
-def verificaridade(idade):
-    if idade >= 18:
-        return 'você é maior de idade'
-    else:
-        return 'você é menor de idade'
-
-@app.route('/verificaridade2/<int:idade>')
 def verificaridade2(idade):
-    return render_template('idade.html', idade=idade)
+    return render_template('verificaridade2.html', idade=idade)
+
+@app.route('/exemplolaco')
+def exemplolaco():
+    return render_template('exemplolaco.html')
+
+@app.route('/lista')
+def lista():
+    return render_template('lista.html', itens=itens)
+
+@app.route('/produtos')
+def produtos():
+    itens = [
+        { 'nome' : 'teclado', 'preco' : 200, 'categoria' : 'computador' },
+        { 'nome' : 'pen-drive', 'preco' : 50, 'categoria' : 'celular' },
+        { 'nome' : 'smartphone', 'preco' : 4500, 'categoria' : 'computador' }
+    ]
+    return render_template('produtos.html', itens=itens)
 
 if __name__ == '__main__':
     app.run()
